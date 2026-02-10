@@ -5,7 +5,28 @@
 </head>
 
 <body>
-<h1>test 1 aaa</h1>
+
+  <script>
+  function sendFunction() {
+    tytul = document.getElementById("tytulMaila").innerHTML;
+    tekst = document.getElementById("trescMaila").innerHTML;
+    Console.log(tekst);
+    window.open('mailto:sunil.ratnayake12@gmail.com?subject='+tytul+'&body='+tekst);
+  }
+  </script>
+  
+  <h2>Send e-mail to sunil.ratnayake12@gmail.com</h2>
+  
+  <!-- <form action="mailto:someone@example.com" method="post" enctype="text/plain"> -->
+  Tytuł:<br>
+  <input type="text" name="tytul" id="tytulMaila" size="50"><br><br>
+  Treść:<br>
+  <input type="text" name="tresc" id="trescMaila" size="50"><br><br>
+  <button onclick="sendFunction()">wyślij</button>
+  <!-- <input type="submit" value="Send"> -->
+  <!-- <input type="reset" value="Reset"> -->
+  <!-- </form> -->
+
 </body>
 
 
