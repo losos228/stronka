@@ -1,34 +1,64 @@
 <!doctype html>
 <html>
+
 <head>
-<title>test 1</title>
+  <title>test 1</title>
+  <style>
+    #content {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      width: 60vw;
+      background-color: red;
+      position:absolute;
+      left:20%;
+      top:5%;
+      min-height: 80vh;
+      padding:1vw;
+    }
+    body{
+      /* text-align: center; */
+      align-items: center;
+      background-color: aqua;
+      
+    }
+    textarea{ 
+      /* width: 98%; */
+      /* height: ""; */
+      height: fit-content;
+    }
+  </style>
 </head>
 
-<body>
-
+<body onload="loadContent()">
   <script>
-  function sendFunction() {
-    tytul = document.getElementById("tytulMaila").value;
-    tekst = document.getElementById("trescMaila").innerHTML;
-    console.log(tekst);
-    console.log(tytul);
-    window.open('mailto:sunil.ratnayake12@gmail.com?subject='+tytul+'&body='+tekst);
-  }
+    var trescMaila = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id orci porta, tristique mauris non, mattis orci. Ut pellentesque risus felis. Ut ante ligula, commodo ut ipsum vitae, eleifend elementum tortor. Maecenas at odio dignissim, mollis ex a, faucibus lorem. Fusce a egestas mi, nec commodo augue. Morbi eu lorem eu mi dignissim pulvinar ut in eros. Phasellus viverra porta eros pellentesque sodales. Mauris malesuada fermentum neque sit amet ornare. Sed ut fermentum enim, et sollicitudin est. Mauris dui ex, semper sit amet ultrices sed, consectetur iaculis libero. Integer velit tortor, dapibus vel mollis vitae, hendrerit vitae nulla. Morbi ut consectetur orci. Aliquam erat volutpat. Morbi maximus elit sed nulla semper blandit. Aliquam aliquam et sapien ut ultrices. Suspendisse vehicula molestie eros sit amet tristique.\
+Morbi ut nunc tellus. Sed metus arcu, porta non aliquet a, ullamcorper nec turpis. Morbi rutrum odio et elit vestibulum mollis. Ut eros lorem, rhoncus at augue sed, fringilla fermentum tellus. Nam ut ligula elementum, tempor sapien in, egestas urna. Aliquam dignissim, neque eget euismod efficitur, massa nulla gravida metus, eget consectetur diam diam ac urna. Nam lobortis malesuada quam et vehicula. Aliquam rutrum at tellus accumsan eleifend. Nunc sit amet risus sit amet eros iaculis suscipit a vel magna. Aenean ullamcorper lacinia orci, eu consequat libero auctor quis. Etiam fermentum vehicula porttitor. Proin vulputate dignissim lacinia. Morbi nunc urna, iaculis ut dolor a, bibendum feugiat felis. Pellentesque tortor mauris, fringilla sit amet nisl ac, lobortis pellentesque lacus. Morbi condimentum lacus nisl, a sollicitudin orci ullamcorper sit amet. Sed suscipit non odio a hendrerit.\
+Praesent consequat sagittis aliquam. In pharetra sed est in imperdiet. Curabitur id mi at diam porttitor laoreet vel maximus quam. Fusce porta nisi in erat suscipit, condimentum faucibus mauris rutrum. Maecenas ultrices leo eget lobortis accumsan. Nunc tristique cursus commodo. Etiam fermentum leo eget ante lobortis, quis vestibulum dui laoreet. Cras tempor at arcu vitae convallis. Aliquam mauris ipsum, imperdiet eget dictum quis, accumsan sit amet urna. Nulla facilisi.";
+    function loadContent() {
+      console.log("test");
+      document.getElementById("trescMaila").innerHTML = trescMaila;
+    }
+    function sendFunction() {
+      tytul = document.getElementById("tytulMaila").value;
+      tekst = document.getElementById("trescMaila").innerHTML;
+      console.log(tekst);
+      console.log(tytul);
+      window.open('mailto:sunil.ratnayake12@gmail.com?subject=' + tytul + '&body=' + tekst);
+    }
   </script>
-  
-  <h2>wyslij do mnie maila sunil.ratnayake12@gmail.com</h2>
-  
-  <!-- <form action="mailto:someone@example.com" method="post" enctype="text/plain"> -->
-  Tytuł:<br>
-  <input type="text" name="tytul" id="tytulMaila" value="elo"><br><br>
-  Treść:<br>
-  <textarea  type="text" name="tresc" id="trescMaila">
-siema siema
-  </textarea ><br><br>
-  <button onclick="sendFunction()">wyślij</button>
-  <!-- <input type="submit" value="Send"> -->
-  <!-- <input type="reset" value="Reset"> -->
-  <!-- </form> -->
+
+  <div id="content">
+    <h2>wyslij do mnie maila sunil.ratnayake12@gmail.com</h2>
+
+    <!-- <form action="mailto:someone@example.com" method="post" enctype="text/plain"> -->
+    Tytuł:<input type="text" name="tytul" id="tytulMaila" value="elo">
+    Treść:
+    <textarea type="text" name="tresc" id="trescMaila">
+
+    </textarea><br><br>
+    <button onclick="sendFunction()">wyślij</button>
+  </div>
 
 </body>
 
