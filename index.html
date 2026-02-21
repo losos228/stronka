@@ -8,13 +8,20 @@
       display: flex;
       flex-direction: column;
       /* align-items: center; */
-      width: 60vw;
+      min-width: 60vw;
+      /* min-width: 10px; */
       background-color: lightpink;
       position:absolute;
       left:20%;
       top:5%;
       min-height: 80vh;
       padding:1vw;
+    }
+    @media only screen and (max-width: 800px) {
+      #content {
+        width: 90%;
+        left:5%;
+      }
     }
     body{
       /* text-align: center; */
@@ -92,7 +99,7 @@ dictum quis, accumsan sit amet urna. Nulla facilisi."]
   </script>
 
   <div id="content">
-    <h2>wyslij do mnie maila sunil.ratnayake12@gmail.com</h2>
+    <h2>wyslij do mnie maila</h2>
 
     <!-- <form action="mailto:someone@example.com" method="post" enctype="text/plain"> -->
     Tytuł:<input type="text" name="tytul" id="tytulMaila" value="elo">
