@@ -89,9 +89,9 @@ dictum quis, accumsan sit amet urna. Nulla facilisi."]
       document.getElementById("tytulMaila").value = tytul;
     }
     function sendFunction() {
-      tytul = document.getElementById("tytulMaila").value;
-      tekst = document.getElementById("trescMaila").innerHTML;
-      imie = document.getElementById("podpisMaila").value;
+      tytul = encodeURIComponent(document.getElementById("tytulMaila").value);
+      tekst = encodeURIComponent(document.getElementById("trescMaila").innerHTML);
+      imie = encodeURIComponent(document.getElementById("podpisMaila").value);
       console.log(tekst);
       console.log(tytul);
       window.open('mailto:sunil.ratnayake12@gmail.com?subject=' + tytul + '&body=' + tekst + imie);
