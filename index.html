@@ -79,7 +79,7 @@
     }
     const akapity1 = ["pierwszy akapit 1","pierwszy akapit 2","pierwszy akapit 3","pierwszy akapit 4","pierwszy akapit 5"]
     const akapity2 = ["drugi akapit 1","drugi akapit 2","drugi akapit 3","drugi akapit 4","drugi akapit 5"]
-    const podipsPoczatek = "\nZ poważaniem,\n"
+    const podpisPoczatek = "\nZ poważaniem,\n"
     email_dict={
       "grupa_1":{
         "mezczyzna":['grupa1email1mezczyzna@gmail.com','grupa1email2mezczyzna@gmail.com','grupa1email3mezczyzna@gmail.com'],
@@ -99,7 +99,6 @@
     lenAkapity2 = akapity2.length;
     trescMaila += akapity1[Math.floor(Math.random() * lenAkapity1)] + "\n"
     trescMaila += akapity2[Math.floor(Math.random() * lenAkapity2)] + "\n"
-    trescMaila += podipsPoczatek;
     tytul = tytuly[Math.floor(Math.random() * tytuly.length)];
     function loadContent() {
       pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n"
@@ -108,7 +107,8 @@
         groupChoiceStr += "<input type=\"checkbox\" id=\""+key+"\" checked>"+key.replace("_"," ")
       })
       document.getElementById("groupChoice").innerHTML = groupChoiceStr;
-      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila;
+      podpis = podpisPoczatek + document.getElementById("podpisMaila").value
+      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
       document.getElementById("tytulMaila").value = tytul;
     }
     function getEmailStr(){
@@ -142,12 +142,14 @@
       emailStr = getEmailStr()
       tytul = encodeURIComponent(document.getElementById("tytulMaila").value);
       tekst = encodeURIComponent(document.getElementById("trescMaila").innerHTML);
-      imie = encodeURIComponent(document.getElementById("podpisMaila").value);
-      window.open('mailto:'+emailStr+'?subject=' + tytul + '&body=' + tekst + imie);
+      // imie = encodeURIComponent(document.getElementById("podpisMaila").value);
+      window.open('mailto:'+emailStr+'?subject=' + tytul + '&body=' + tekst);
     }
-    function changeFunction(){
-      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n"
-      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila;
+    function changeMailContent(){
+      console.log("called")
+      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n";
+      podpis = podpisPoczatek + document.getElementById("podpisMaila").value
+      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
     }
   </script>
 
@@ -157,11 +159,11 @@
 
     Tytuł maila:<input type="text" name="tytul" id="tytulMaila" class="formInput">
     </form>
-    Imię do podpisu :<input type="text" name="podpis" id="podpisMaila" class="formInput">
+    Imię do podpisu :<input type="text" name="podpis" id="podpisMaila" class="formInput" oninput="changeMailContent()">
     <div id="divGrupa">
       Wyślij do przedstawicieli grup:<br>
       Który jest:
-      <select id="funkcja" onchange="changeFunction()">
+      <select id="funkcja" onchange="changeMailContent()">
         <option value="mezczyzna">Mężczyzną</option>
         <option value="kobieta">Kobietą</option>
       </select>
