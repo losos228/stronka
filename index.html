@@ -72,9 +72,13 @@
       }
     }
     const tytuly = ["tytul 1", "tytul 2", "tytul 3", "tytul 4", "tytul 5"];
+    pierwszeZdania={
+      "mezczyzna":"Szanowny Panie,",
+      "kobieta":"Szanowna Panii,"
+    }
     const akapity1 = ["pierwszy akapit 1","pierwszy akapit 2","pierwszy akapit 3","pierwszy akapit 4","pierwszy akapit 5"]
     const akapity2 = ["drugi akapit 1","drugi akapit 2","drugi akapit 3","drugi akapit 4","drugi akapit 5"]
-    const podipsPoczatek = "\n\nZ poważaniem,\n"
+    const podipsPoczatek = "\nZ poważaniem,\n"
     email_dict={
       "grupa_1":{
         "mezczyzna":['grupa1email1mezczyzna@gmail.com','grupa1email2mezczyzna@gmail.com','grupa1email3mezczyzna@gmail.com'],
@@ -95,14 +99,15 @@
     trescMaila += akapity1[Math.floor(Math.random() * lenAkapity1)] + "\n"
     trescMaila += akapity2[Math.floor(Math.random() * lenAkapity2)] + "\n"
     trescMaila += podipsPoczatek;
-    var tytul = tytuly[Math.floor(Math.random() * tytuly.length)];
+    tytul = tytuly[Math.floor(Math.random() * tytuly.length)];
     function loadContent() {
+      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n"
       groupChoiceStr = ""
       Object.keys(email_dict).forEach(function(key){
         groupChoiceStr += "<input type=\"checkbox\" id=\""+key+"\" checked>"+key.replace("_"," ")
       })
       document.getElementById("groupChoice").innerHTML = groupChoiceStr;
-      document.getElementById("trescMaila").innerHTML = trescMaila;
+      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila;
       document.getElementById("tytulMaila").value = tytul;
     }
     function getEmailStr(){
@@ -139,6 +144,10 @@
       imie = encodeURIComponent(document.getElementById("podpisMaila").value);
       window.open('mailto:'+emailStr+'?subject=' + tytul + '&body=' + tekst + imie);
     }
+    function changeFunction(){
+      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n"
+      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila;
+    }
   </script>
 
   <div id="content">
@@ -151,7 +160,7 @@
     <div id="divGrupa">
       Wyślij do przedstawicieli grup:<br>
       Który jest:
-      <select id="funkcja">
+      <select id="funkcja" onchange="changeFunction()">
         <option value="mezczyzna">Mężczyzną</option>
         <option value="kobieta">Kobietą</option>
       </select>
