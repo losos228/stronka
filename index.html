@@ -17,7 +17,7 @@
       min-height: 80vh;
       padding:1vw;
     }
-    @media only screen and (max-width: 800px) {
+    @media(max-width: 800px) {
       #content {
         width: 90%;
         left:5%;
@@ -142,13 +142,20 @@
       emailStr = getEmailStr()
       tytul = encodeURIComponent(document.getElementById("tytulMaila").value);
       tekst = encodeURIComponent(document.getElementById("trescMaila").innerHTML);
-      // imie = encodeURIComponent(document.getElementById("podpisMaila").value);
       window.open('mailto:'+emailStr+'?subject=' + tytul + '&body=' + tekst);
+      randomizeContent()
     }
     function changeMailContent(){
-      console.log("called")
       pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n";
-      podpis = podpisPoczatek + document.getElementById("podpisMaila").value
+      podpis = podpisPoczatek + document.getElementById("podpisMaila").value;
+      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
+    }
+    function randomizeContent(){
+      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n";
+      podpis = podpisPoczatek + document.getElementById("podpisMaila").value;
+      trescMaila = "";
+      trescMaila += akapity1[Math.floor(Math.random() * lenAkapity1)] + "\n"
+      trescMaila += akapity2[Math.floor(Math.random() * lenAkapity2)] + "\n"
       document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
     }
   </script>
@@ -161,13 +168,13 @@
     </form>
     Imię do podpisu :<input type="text" name="podpis" id="podpisMaila" class="formInput" oninput="changeMailContent()">
     <div id="divGrupa">
-      Wyślij do przedstawicieli grup:<br>
-      Który jest:
+      Wyślij do osób należących do grup (odznacz te do których nie chcesz wysyłać):<br>
+      <div id="groupChoice"></div>
+      Które są:
       <select id="funkcja" onchange="changeMailContent()">
         <option value="mezczyzna">Mężczyzną</option>
         <option value="kobieta">Kobietą</option>
       </select>
-      <div id="groupChoice"></div>
     </div>
     <button onclick="sendFunction()">wyślij</button><br>
     <form autocomplete="off">
