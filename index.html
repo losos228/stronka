@@ -3,78 +3,13 @@
 
 <head>
   <title>test 1</title>
-  <style>
-    #content {
-      display: flex;
-      flex-direction: column;
-      /* align-items: center; */
-      min-width: 60vw;
-      /* min-width: 10px; */
-      background-color: lightpink;
-      position:absolute;
-      left: 20vw;
-      top: 5vh;
-      min-height: 80vh;
-      padding: 1vw;
-    }
-    @media(max-width: 1500px) {
-      #content {
-        width: 95vw;
-        left: 1vw;
-        font-size: 1.5rem;
-      }
-    }
-    body{
-      /* text-align: center; */
-      align-items: center;
-      background-color: aqua;
-      background-image: url("img/bg.jpg");
-      background-attachment: fixed;
-      background-size: 640px 360px;
-    }
-    textarea{ 
-      width: 98%;
-      height: 98vh;
-      /* height: fit-content; */
-    }
-    form{
-      width: 100%
-    }
-    .formInput {
-      width: 100%
-    }
-    select{
-      width: 20%
-    }
-    #divGrupa{
-      border-color: black;
-      border-width: 2px;
-      border-style: solid;
-      padding: 2px;
-      margin: 2px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body onload="loadContent()">
   <script>
-    function shuffle(array) {
-      let currentIndex = array.length;
-
-      // While there remain elements to shuffle...
-      while (currentIndex != 0) {
-
-        // Pick a remaining element...
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-      }
-    }
     const tytuly = ["tytul 1", "tytul 2", "tytul 3", "tytul 4", "tytul 5"];
-    pierwszeZdania={
+    pierwszeZdania = {
       "mezczyzna":"Szanowny Panie,",
       "kobieta":"Szanowna Panii,"
     }
@@ -95,72 +30,8 @@
         "kobieta":['grupa3email1kobieta@gmail.com','grupa3email2kobieta@gmail.com']
       }
     }
-    var trescMaila = "";
-    lenAkapity1 = akapity1.length;
-    lenAkapity2 = akapity2.length;
-    trescMaila += akapity1[Math.floor(Math.random() * lenAkapity1)] + "\n"
-    trescMaila += akapity2[Math.floor(Math.random() * lenAkapity2)] + "\n"
-    tytul = tytuly[Math.floor(Math.random() * tytuly.length)];
-    function loadContent() {
-      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n"
-      groupChoiceStr = ""
-      Object.keys(email_dict).forEach(function(key){
-        groupChoiceStr += "<input type=\"checkbox\" id=\""+key+"\" checked>"+key.replace("_"," ")
-      })
-      document.getElementById("groupChoice").innerHTML = groupChoiceStr;
-      podpis = podpisPoczatek + document.getElementById("podpisMaila").value
-      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
-      document.getElementById("tytulMaila").value = tytul;
-    }
-    function getEmailStr(){
-      emails = []
-      funkcja = document.getElementById("funkcja").value
-      Object.keys(email_dict).forEach(function(key){
-        if(document.getElementById(key).checked){
-          emails.push.apply(emails, email_dict[key][funkcja])
-        }
-      })
-      if(emails.length == 0){
-        Object.keys(email_dict).forEach(function(key){
-          emails.push.apply(emails, email_dict[key][funkcja])
-        })
-      }
-      console.log(emails)
-      shuffle(emails)
-      console.log(emails)
-      returnEmailsNum = Math.min(emails.length, 3)
-      console.log("returnEmailsNum: "+returnEmailsNum)
-      emailStr = ""
-      for (let i = 0; i < returnEmailsNum; i++){
-        emailStr += emails[i]
-        if(i+1<returnEmailsNum){
-          emailStr+= ", "
-        }
-      }
-      return emailStr
-    }
-    function sendFunction() {
-      emailStr = getEmailStr()
-      tytul = encodeURIComponent(document.getElementById("tytulMaila").value);
-      tekst = encodeURIComponent(document.getElementById("trescMaila").innerHTML);
-      window.open('mailto:'+emailStr+'?subject=' + tytul + '&body=' + tekst);
-      randomizeContent()
-    }
-    function changeMailContent(){
-      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n";
-      podpis = podpisPoczatek + document.getElementById("podpisMaila").value;
-      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
-    }
-    function randomizeContent(){
-      pierwszeZdanie = pierwszeZdania[document.getElementById('funkcja').value]+"\n";
-      podpis = podpisPoczatek + document.getElementById("podpisMaila").value;
-      trescMaila = "";
-      trescMaila += akapity1[Math.floor(Math.random() * lenAkapity1)] + "\n"
-      trescMaila += akapity2[Math.floor(Math.random() * lenAkapity2)] + "\n"
-      document.getElementById("trescMaila").innerHTML = pierwszeZdanie + trescMaila + podpis;
-    }
   </script>
-
+  <script type="text/javascript" src="js/script.js"></script>
   <div id="content">
     <form autocomplete="off">
     <h2>wyslij do mnie maila</h2>
