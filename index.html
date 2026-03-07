@@ -12,15 +12,15 @@
       /* min-width: 10px; */
       background-color: lightpink;
       position:absolute;
-      left: 20%;
-      top: 5%;
+      left: 20vw;
+      top: 5vh;
       min-height: 80vh;
       padding: 1vw;
     }
     @media(max-width: 800px) {
       #content {
-        width: 90vw;
-        left: 5vw;
+        width: 95vw;
+        left: 1vw;
         font-size: 1.5rem;
       }
     }
@@ -169,7 +169,7 @@
     </form>
     Imię do podpisu :<input type="text" name="podpis" id="podpisMaila" class="formInput" oninput="changeMailContent()">
     <div id="divGrupa">
-      Wyślij do osób należących do grup (odznacz te do których nie chcesz wysyłać):<br>
+      Wyślij do osób należących do(odznacz te grupy do których nie chcesz wysyłać maili):<br>
       <div id="groupChoice"></div>
       Które są:
       <select id="funkcja" onchange="changeMailContent()">
